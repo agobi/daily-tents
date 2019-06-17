@@ -1,0 +1,72 @@
+name:                daily-tents
+version:             0.1.0.0
+github:              "agobi/daily-tents"
+license:             BSD3
+author:              "Attila Gobi"
+maintainer:          "attila.gobi@gmail.com"
+copyright:           "2019 Attila Gobi"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+- test/*.js
+- test/*.csv
+
+# Metadata used when publishing your package
+synopsis:            "Solves daily tents from BrainBashers"
+category:            Game
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/Github username here/daily-tents#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+  dependencies:
+  - vector
+  - MissingH
+  - parsec
+
+executables:
+  daily-tents-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -Wall
+    - -O2
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - daily-tents
+    - base
+
+tests:
+  daily-tents-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - daily-tents
+    - hspec
+
+benchmarks:
+  daily-tents-bench:
+    main:                Bench.hs
+    source-dirs:         bench
+    ghc-options:
+      - -Wall
+      - -O2
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - daily-tents
+      - criterion
